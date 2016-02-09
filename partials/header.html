@@ -1,0 +1,58 @@
+			<div class="header-middle"><!--header-middle-->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-2">
+							<div class="logo pull-left">
+								<a href="index.html"><img src="http://localhost/pczwpng/wp-content/uploads/2016/02/pczlogo-copy.jpg" alt="PCZ logo" /></a>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<h1>Project Chess Zambia</h1>
+						</div>
+						<div class="col-sm-4">
+							<div class="social-icons pull-right">
+							<ul class="contactinfo nav nav-pills">
+									<li><a href="#"><i class="fa fa-phone"></i>+260 955 188 821</a></li>
+									<li><a href="#"><i class="fa fa-envelope"></i>info@pcz.com</a></li>
+								</ul>
+								<ul class="nav navbar-nav">
+									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+									<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+									<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!--/header-middle-->
+		
+			<div class="header-bottom"><!--header-bottom-->
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-9">
+							<div class="mainmenu pull-left">
+								<ul class="nav navbar-nav">
+									<li ng-class="{active: menu.isSelected(1)}">
+										<a href="#"  ng-click="menu.selectTab(1)">News</a></li>
+									<li ng-class="{active: menu.isSelected(2)}">
+										<a href="#" ng-click="menu.selectTab(2)">Database</a>
+	                                </li> 
+									<li ng-class="{active: menu.isSelected(3)}">
+										<a href="#" ng-click="menu.selectTab(3)">Tournaments</a>
+	                                </li> 
+									<li ng-class="{active: menu.isSelected(4)}">
+										<a href="#" ng-click="menu.selectTab(4)">Shop</a>
+									</li>
+									<li ng-class="{active: menu.isSelected(5)}">
+										<a href="#" ng-click="menu.selectTab(5)">Contact</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+		<main ng-show="menu.isSelected(1)"></main>
+		<database ng-show="menu.isSelected(2)"></database>
