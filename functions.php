@@ -23,7 +23,7 @@ function my_scripts() {
 	);
 	wp_enqueue_style(
 		'my-styles',
-		get_stylesheet_directory_uri() . '/css/style.css'
+		get_stylesheet_directory_uri() . '/style.css'
 	);	
 	wp_enqueue_style(
 		'my-fonts',
