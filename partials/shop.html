@@ -1,0 +1,17 @@
+	<div class="container-fluid">
+		<ngcart-cart ng-show="showCart==true"></ngcart-cart>
+		<div class="pull-right">
+			<ngcart-summary ></ngcart-summary>
+			<button ng-click="showCart=true">
+				View Cart
+			</button>
+			<button>
+				<ngcart-checkout service="http" settings="httpSettings">Checkout</ngcart-checkout>
+			</button>
+		</div>
+		<div ng-repeat="item in items track by item.id">
+			<h2>{{item.name}}</h2>
+			<p>{{item.price | currency:"K"}}</p>	
+			<ngcart-addtocart id="{{item.id}}" name="{{item.name}}" price="{{item.price}}" quantity="1" quantity-max="5">Add to Cart</ngcart-addtocart>
+		</div>
+	</div>

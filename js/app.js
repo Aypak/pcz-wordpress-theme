@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute','ngSanitize'])
+var app = angular.module('app', ['ngRoute','ngSanitize','ngCart','truncate'])
 .config(function($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
@@ -7,6 +7,33 @@ var app = angular.module('app', ['ngRoute','ngSanitize'])
         templateUrl: myLocalized.partials + 'main.html'
     });*/
 });
+app.directive('ellipsis', [function(){
+    // Runs during compile
+    return {
+        // name: '',
+         priority: 100,
+        // terminal: true,
+        // scope: {}, // {} = isolate, true = child, false/undefined = no change
+        // controller: function($scope, $element, $attrs, $transclude) {},
+         required: 'ngBindHTML', // Array = multiple requires, ? = optional, ^ = check parent elements
+         restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+        // template: '',
+        // templateUrl: '',
+        // replace: true,
+        // transclude: true,
+        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+        link: function($scope, element, attrs, ctrl) {
+            $scope.hasEllipsis = false;
+            $scope.$watch(element.html(), function(value) {
+               if (!$scope.hasEllipsis) {
+                   // apply ellipsis only one
+                   $scope.hasEllipsis = true;
+                   element.ellipsis();
+               }
+            });
+        }
+    };
+}]);
 app.directive('main', function(){
     // Runs during compile
     return {
@@ -25,6 +52,32 @@ app.directive('main', function(){
 
         // template: '',
          templateUrl: 'wp-content/themes/pcz/partials/main.html'
+        // replace: true,
+        // transclude: true,
+        // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
+    };
+});
+app.directive('shop', function(){
+    // Runs during compile
+    return {
+        // name: '',
+        // priority: 1,
+        // terminal: true,
+        scope: {}, // {} = isolate, true = child, false/undefined = no change
+        controller:['$scope','$http','ngCart',function($scope, $http,ngCart) {
+                $http.get('wp-content/themes/pcz/ajax/getItems.php').success(function(res){
+                $scope.items = res;
+                $scope.showCart=false;
+                ngCart.setTaxRate(7.5);
+                ngCart.setShipping(0);
+            });
+        }],
+        //controllerAs: 'menu' ,
+        // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
+         restrict: 'E',
+
+        // template: '',
+         templateUrl: 'wp-content/themes/pcz/partials/shop.html'
         // replace: true,
         // transclude: true,
         // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
